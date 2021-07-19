@@ -1,0 +1,21 @@
+name: "Workflow Rollback"
+description: "Rolls back the HEAD on a given branch to another revision"
+author: "fivebluepetals"
+branding:
+  icon: zap
+  color: orange
+
+inputs:
+  branch:
+    description: 'The branch to undo last commit'
+    required: true
+    default: main
+  revision:
+    description: 'The tag, commit hash, revision to revert to'
+    required: false
+    default: 'HEAD~1'
+
+runs:
+  using: 'docker'
+  image: 'Dockerfile'
+
