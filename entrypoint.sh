@@ -7,11 +7,7 @@ is_upstream() {
 
   ## $2 - the downstream
   downstream=$2
-
-  echo "Upstream: $upstream"
-  echo "Downstream: $downstream"
-  
-  return 1
+  echo "1"
 }
 
 is_on_branch() {
@@ -19,17 +15,13 @@ is_on_branch() {
   revision=$1
 
   ## $2 - the name of the branch
-  branch=$1
-
-  echo "Revision: $revision"
-  echo "Branch: $branch"
-
-  return 1
+  branch=$2
+  echo "1"
 }
 
 # Set default variables that we will define
-REVISION=${INPUT_REVISION:=`git rev-parse HEAD~1`}
-BRANCH=${INPUT_BRANCH:=main}
+REVISION=${1:-`git rev-parse HEAD~1`}
+BRANCH=${2:-main}
 
 cd "${GITHUB_WORKSPACE}"
 echo "git branch ${BRANCH}"
@@ -45,7 +37,7 @@ fi
 
 CURRENT_REVISION=$(git rev-parse HEAD)
 echo "Checking to see if revision ${REVISION} is an ancestor of the current revision (${CURRENT_REVISION})..."
-is_upstream ${REVISION} $(git rev-parse HEAD); if [ $? -eq 0 ]
+is_upstream ${REVISION} ${CURRENT_REVISION}; if [ $? -eq 0 ]
 then
   >&2 echo "Revision ${REVISION} is not an ancestor of the current revision (${CURRENT_REVISION})"
   exit 1
@@ -54,3 +46,6 @@ fi
 echo "Reverting to revision ${REVISION} on branch \"${BRANCH}\"..."
 echo "git reset --hard ${REVISION}"
 echo "git push --force"
+
+time=$(date)
+echo "::set-output name=time::$time"
