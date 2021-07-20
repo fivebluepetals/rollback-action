@@ -3,11 +3,11 @@ on:
   workflow_dispatch:
     inputs:
       revision:
-        description: 'The version to rollback to'
+        description: 'The revision to rollback to'
         required: true
 
       branch:
-        description: 'The version to rollback to'
+        description: 'The branch that the rollback affects'
         required: true
 
 jobs:
