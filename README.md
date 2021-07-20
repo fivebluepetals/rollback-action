@@ -41,7 +41,7 @@ jobs:
            fetch-depth: 0
 
       - name: Rolls back to a certain version
-        uses: fivebluepetals/rollback-action@v1.0.0
+        uses: fivebluepetals/rollback-action@v1.0
         with:
           branch: ${{ github.event.inputs.branch }}
           revision: ${{ github.event.inputs.revision }}
