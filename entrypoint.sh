@@ -30,7 +30,7 @@ REVISION=${1:-`git rev-parse HEAD~1`}
 BRANCH=${2:-main}
 
 cd "${GITHUB_WORKSPACE}"
-git branch ${BRANCH}
+git checkout ${BRANCH}
 git config --global user.name "github-actions[bot]"
 git config --global user.email "github-actions[bot]@users.noreply.github.com"
 
