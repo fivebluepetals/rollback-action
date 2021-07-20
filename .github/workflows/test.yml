@@ -22,5 +22,5 @@ jobs:
       - name: Rolls back to a certain version
         uses: fivebluepetals/rollback-action@v0.2
         with:
-          branch: ${{ github.event.input.version }}
-          revision: ${{ github.event.inputs.version }}
+          branch: ${{ github.event.inputs.branch }}
+          revision: ${{ github.event.inputs.revision }}
