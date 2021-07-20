@@ -1,10 +1,7 @@
-FROM alpine:latest
+FROM alpine/git:latest
 
-RUN apk add --update --no-cache git && \
-    rm -rf /var/lib/apt/lists/*
-
+# copy the entrypoint.sh file
 COPY entrypoint.sh /entrypoint.sh
-
 RUN chmod u+x /entrypoint.sh
 
 ENTRYPOINT ["/entrypoint.sh"]
