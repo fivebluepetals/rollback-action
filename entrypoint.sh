@@ -7,6 +7,9 @@ is_upstream() {
 
   ## $2 - the downstream
   downstream=$2
+
+  echo "Upstream: $upstream"
+  echo "Downstream: $downstream"
   
   return 1
 }
@@ -17,6 +20,10 @@ is_on_branch() {
 
   ## $2 - the name of the branch
   branch=$1
+
+  echo "Revision: $revision"
+  echo "Branch: $branch"
+
   return 1
 }
 
