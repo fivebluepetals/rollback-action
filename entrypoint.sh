@@ -51,7 +51,7 @@ fi
 
 echo "Reverting to revision ${REVISION} on branch \"${BRANCH}\"..."
 git reset --hard ${REVISION}
-echo "git push --force"
+git push --force
 
 time=$(date)
 echo "::set-output name=time::$time"
