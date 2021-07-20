@@ -22,7 +22,7 @@ is_on_branch() {
   branch=$2
 
   # git branch $2 
-  echo $(git branch ${branch} --commit ${revision} | wc -l)
+  echo $(git branch ${branch} --contains ${revision} | wc -l)
 }
 
 # Set default variables that we will define
