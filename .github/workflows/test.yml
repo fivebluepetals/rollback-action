@@ -20,7 +20,7 @@ jobs:
            ref: ${{ github.event.inputs.branch }}
            fetch-depth: 0
       - name: Rolls back to a certain version
-        uses: fivebluepetals/rollback-action@v0.2
+        uses: fivebluepetals/rollback-action@v0.3
         with:
           branch: ${{ github.event.inputs.branch }}
           revision: ${{ github.event.inputs.revision }}
