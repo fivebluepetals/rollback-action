@@ -29,17 +29,17 @@ echo 'git config --global user.name "github-actions[bot]"'
 echo 'git config --global user.email "github-actions[bot]@users.noreply.github.com"'
 
 echo "Checking to see if revision ${REVISION} is on branch \"${BRANCH}\"..."
-is_on_branch ${REVISION} ${BRANCH}; if [ $? -eq 0 ]
+if [ $(is_on_branch ${REVISION} ${BRANCH}) -eq 0 ]
 then
-  >&2 echo "Revision ${REVISION} is not on branch ${BRANCH}"
+  echo "Revision ${REVISION} is not on branch ${BRANCH}"
   exit 1
 fi
 
 CURRENT_REVISION=$(git rev-parse HEAD)
 echo "Checking to see if revision ${REVISION} is an ancestor of the current revision (${CURRENT_REVISION})..."
-is_upstream ${REVISION} ${CURRENT_REVISION}; if [ $? -eq 0 ]
+if [ $(is_upstream ${REVISION} ${CURRENT_REVISION}) -eq 0 ]
 then
-  >&2 echo "Revision ${REVISION} is not an ancestor of the current revision (${CURRENT_REVISION})"
+  echo "Revision ${REVISION} is not an ancestor of the current revision (${CURRENT_REVISION})"
   exit 1
 fi
 
