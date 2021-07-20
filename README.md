@@ -70,11 +70,11 @@ For more information, please see `action.yml`.
 ## Slightly Deeper Dive
 
 In a nutshell, this is a Docker-based action, whose entrypoint (`entrypoint.sh`)
-checkouts the branch specified by `branch`,
+checks out the branch specified by `branch`,
 resets the pointer to the value provided by `revision` and does a
 force push.
 
-Before the shell script does that, it perform two checks:
+The script does perform two checks before doing a `--hard` reset:
 
 1. is revision pointer a commit within the branch
 2. is the revision pointer an ancestor of the branch
@@ -86,6 +86,10 @@ the command returns nothing.
 For (2), it uses `git merge-base --is-ancestor $revision HEAD` with the 
 assumption that if $revision is an ancestor, then the expression returns
 0; otherwise, the expression returns 1.
+
+If both of these checks succeed, then the script will perform the hard
+reset and the force push. Otherwise, it will terminate with a non-zero
+exit code.
 
 ## Be Really Careful!
 
