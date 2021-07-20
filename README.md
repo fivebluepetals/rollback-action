@@ -6,8 +6,12 @@ commit(s) from a branch by resetting the head of that branch to a
 previous commit in that branch. For example, if the `main` branch
 contains errand code and you want the code to be evicted from the
 tip, then you can reset the tip to a previous checkpoint using
-this action as part of a `workflow_dispatch` or an automated rollback
-action.
+this action as part of a `workflow_dispatch`.
+
+One can also include this as part of an automated workflow to
+back out commits associated with failed builds, though a better 
+approach might be to never include those builds as part of your branch 
+in the first place.
 
 ## Usage
 
